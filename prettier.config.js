@@ -1,5 +1,10 @@
 /** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
 const config = {
+  semi: false,
+  singleQuote: true,
+  bracketSpacing: true,
+  tabWidth: 2,
+  jsxSingleQuote: false,
   plugins: ["prettier-plugin-tailwindcss"],
 };
 

@@ -1,4 +1,4 @@
-import Login from "@/app/_components/Login";
+import { LoginForm } from "@/app/_components/LoginForm";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -13,7 +13,7 @@ export default async function LoginPage() {
   return (
     <main className="m-auto max-w-lg">
       <h1 className="mb-6 text-center text-2xl">Login</h1>
-      <Login />
+      <LoginForm />
     </main>
   );
 }
