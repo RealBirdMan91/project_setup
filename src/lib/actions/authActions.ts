@@ -22,7 +22,8 @@ export async function loginAction(
   if (error) {
     return {
       type: 'error',
-      error: error,
+      message: error.message,
+      error: null,
     }
   }
 

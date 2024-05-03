@@ -20,6 +20,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { loginAction } from '@/lib/actions/authActions'
 import { useActionMutation } from '@/lib/hooks/useActionMutation'
+import { toast } from 'sonner'
 
 export function LoginForm() {
   const form = useForm<LoginSchemaType>({
@@ -28,11 +29,40 @@ export function LoginForm() {
       email: '',
     },
   })
-  const { error, isPending, mutate, data } = useActionMutation<string>({
+  const {
+    error,
+    isPending,
+    mutate,
+    data: loginData,
+    isError,
+    isSuccess,
+  } = useActionMutation<string>({
     mutationFn: (data) => loginAction(data),
   })
 
-  console.log({ error, isPending, data })
+  if (isPending) {
+    toast('pending', {
+      className: 'my-classname',
+      description: 'My description',
+      duration: 1000,
+    })
+  }
+
+  if (isError) {
+    toast('error', {
+      className: 'my-classname',
+      description: 'My description',
+      duration: 1000,
+    })
+  }
+
+  if (isSuccess) {
+    toast('success', {
+      className: 'my-classname',
+      description: 'My description',
+      duration: 1000,
+    })
+  }
 
   return (
     <Form {...form}>
@@ -56,7 +86,9 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          Submit
+        </Button>
       </form>
     </Form>
   )
